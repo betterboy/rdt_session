@@ -142,5 +142,8 @@ int main()
 	server->logmask = RDTS_LOG_DEBUG;
 	test_rdt(client, server);
 
+	rdts_release(client);
+	rdts_release(server);
+
     return 0;
 }

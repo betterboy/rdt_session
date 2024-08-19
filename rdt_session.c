@@ -203,21 +203,30 @@ void rdts_release(rdt_session_t *rdts)
 
     if (rdts->raw_snd_buf) {
         mbuf_free(rdts->raw_snd_buf);
+        free(rdts->raw_snd_buf);
     }
 
     if (rdts->snd_buf) {
         mbuf_free(rdts->snd_buf);
+        free(rdts->snd_buf);
     }
 
     if (rdts->raw_rcv_buf) {
         mbuf_free(rdts->raw_rcv_buf);
+        free(rdts->raw_rcv_buf);
     }
 
     if (rdts->rcv_buf) {
         mbuf_free(rdts->rcv_buf);
+        free(rdts->rcv_buf);
     }
 
     rdts->writelog = NULL;
+    rdts->on_ack = NULL;
+    rdts->user = NULL;
+    rdts->userdata = NULL;
+
+    free(rdts);
 }
 
 //-----------------------------

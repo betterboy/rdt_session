@@ -32,6 +32,7 @@
 #define inline INLINE
 #endif
 
+#define RDTS_LOG_RELEASE	    0	    1
 #define RDTS_LOG_BASE		    1
 #define RDTS_LOG_RECV			2
 #define RDTS_LOG_SEND			4
