@@ -72,7 +72,7 @@ local function sendmsgbyrdt(so, msg)
 end
 
 local function send_rdt_testmsg(so)
-    local msg = string.format("client msg. sid=%d,msgid=%d", session_id, MSG_ID)
+    local msg = string.format("%d|%d", session_id, MSG_ID)
     MSG_ID = MSG_ID + 1
     sendmsgbyrdt(so, msg)
 end
@@ -169,7 +169,7 @@ end
 function _G.OnSessionReconnected(session_id)
     print("client reconnect succ: ", session_id)
     handshake_succ = true
-    -- need_reconn = 5
+    need_reconn = 5
 end
 
 ----------测试重连---------------------

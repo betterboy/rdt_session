@@ -7,7 +7,8 @@ CFLAGS := -fPIC -ggdb -Wall
 CXXFLAGS := -fPIC -ggdb -Wall -std=c++17
 OBJDIR = .obj
 
-INCLUDES = -I./ -I/usr/local/include
+# 可以在这里包含自己的lua头文件路径
+INCLUDES = -I./ -I/usr/local/include -I/usr/include/lua5.3
 SRC_C = mbuf.c rdt_session.c lsocket.c rdts_manager.c lrdt_client.c lrdt_server.c
 
 SRC_LIST += $(SRC_C)

@@ -176,8 +176,10 @@ local function poll()
                     break
                 elseif t == 1 then
                     --message in
-                    msg_in[fd] = session_id
-                    print("<==========:", sid, msg)
+                    local msg_list = string.split(msg, "|")
+                    msg_in[session_id] = math.max(msg_in[session_id] or 0, tonumber(msg_list[2]))
+                    print("<====Recv client msg:", sid, msg_list[2])
+                    print("-----------------")
                 else
                     local so = assert(fds[fd])
                     sendmsgbyso(so, msg)
@@ -210,8 +212,8 @@ while true do
 		else
 			recv(s)
 			local msg_in = poll()
-            for fd, session_id in pairs(msg_in) do
-                local msg = tostring(t) .. "\n"
+            for session_id, msg_id in pairs(msg_in) do
+                local msg = tostring(msg_id) .. "\n"
                 sendmsgbyrdt(session_id, msg)
             end
 			t=t+1

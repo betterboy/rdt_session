@@ -38,6 +38,8 @@ static void session_on_ack(uint64_t offset, void *session)
     if (rdts_check_needack(rdts)) {
         rdts_set_needack(rdts, RDTS_NO_ACK);
         rdts_push_raw(rdts);
+        //需要把这部分数据发送到对端，可以在这里发送，也可以通知lua层，由上层发送
+        //在示例中，选择由lua层发送
 
         //TODO: call lua OnSessionReconnected
         lua_getglobal(gL, "OnSessionReconnected");
